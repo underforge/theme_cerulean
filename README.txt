@@ -2,6 +2,7 @@ About this theme
 ================
 
 This is Bootswatch cerulean for the Bootstrap 3 theme for Moodle.
+- Customized for OSBC
 
 * package   cerulean bootswatch for Bootstrap 3
 * copyright 2014 Bas Brands. www.sonsbeekmedia.nl
