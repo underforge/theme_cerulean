@@ -22,11 +22,17 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+function theme_cerulean_page_init(moodle_page $page) {
+  $page->requires->jquery();
+}
+
 function theme_cerulean_process_css($css, $theme) {
 
     // Set the background image for the logo.
-    $logo = $theme->setting_file_url('logo', 'logo');
+    $logo = $theme->setting_file_url('logo', 'logo');    
     $css = theme_cerulean_set_logo($css, $logo);
+    $logomobile = $theme->setting_file_url('logomobile', 'logomobile');
+    $css = theme_cerulean_set_logomobile($css, $logomobile);
 
     // Set custom CSS.
     if (!empty($theme->settings->customcss)) {
@@ -65,6 +71,31 @@ function theme_cerulean_set_logo($css, $logo) {
     return $css;
 }
 
+function theme_cerulean_set_logomobile($css, $logomobile) {
+    $logomobiletag = '[[setting:logomobile]]';
+    $logomobileheight = '[[logomobileheight]]';
+    $logomobilewidth = '[[logomobilewidth]]';
+    $logomobiledisplay = '[[logomobiledisplay]]';
+    $width = '0';
+    $height = '0';
+    $display = 'none';
+    $replacement = $logomobile;
+    if (is_null($replacement)) {
+        $replacement = '';
+    } else {
+        $dimensions = getimagesize('http:'.$logomobile);
+        $width = $dimensions[0] . 'px';
+        $height = $dimensions[1] . 'px';
+        $display = 'block';
+    }
+    $css = str_replace($logomobiletag, $replacement, $css);
+    $css = str_replace($logomobileheight, $height, $css);
+    $css = str_replace($logomobilewidth, $width, $css);
+    $css = str_replace($logomobiledisplay, $display, $css);
+
+    return $css;
+}
+
 /**
  * Serves any files associated with the theme settings.
  *
@@ -78,7 +109,7 @@ function theme_cerulean_set_logo($css, $logo) {
  * @return bool
  */
 function theme_cerulean_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
-    if ($context->contextlevel == CONTEXT_SYSTEM && ($filearea === 'logo')) {
+    if ($context->contextlevel == CONTEXT_SYSTEM && ($filearea === 'logo' || $filearea === 'logomobile')) {
         $theme = theme_config::load('cerulean');
         return $theme->setting_file_serve($filearea, $args, $forcedownload, $options);
     } else {

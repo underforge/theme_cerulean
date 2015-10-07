@@ -32,7 +32,15 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configstoredfile($name, $title, $description, 'logo');
     $setting->set_updatedcallback('theme_reset_all_caches');
     $settings->add($setting);
-
+    
+    // Logo mobile file setting.
+    $name = 'theme_cerulean/logomobile';
+    $title = get_string('logomobile', 'theme_cerulean');
+    $description = get_string('logomobiledesc', 'theme_cerulean');
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'logomobile');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $settings->add($setting);
+    
     // Custom CSS file.
     $name = 'theme_cerulean/customcss';
     $title = get_string('customcss', 'theme_cerulean');

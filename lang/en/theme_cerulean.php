@@ -34,6 +34,10 @@ $string['logodesc'] = 'Please upload your custom logo here if you want to add it
 If the height of your logo is more than 75px add the following CSS rule to the Custom CSS box below.<br>
 a.logo {height: 100px;} or whatever height in pixels the logo is.';
 
+$string['logomobile'] = 'Mobile Logo';
+$string['logomobiledesc'] = 'Please upload your custom Mobile logo here if you want to add it to the header.<br>
+This logo will display for devices with a maximum of 1024px width.';
+
 $string['pluginname'] = 'Cerulean';
 $string['customcss'] = 'Custom CSS';
 $string['customcssdesc'] = 'Whatever CSS rules you add to this textarea will be reflected in every page, making for easier customization of this theme.';

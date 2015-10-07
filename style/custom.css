@@ -11,6 +11,10 @@ a.logo {
     width: [[logowidth]];
 }
 
+a.logomobile {
+    display:none   
+}
+
 .dir-rtl a.logo {
     background: url([[setting:logo]]) no-repeat 0 0;
     float: right;
@@ -19,3 +23,28 @@ a.logo {
 /* Custom CSS Settings
 -------------------------*/
 [[setting:customcss]]
+
+/* fix section heading color (collpsed topics) */
+H3.section-title
+{
+  color: white;
+}
+a.the_toggle H3 {
+  color: white;
+}
+
+@media only screen and (max-width : 1024px) {
+  a.logo {
+    display:none;
+  }
+  a.logomobile {
+      background: url([[setting:logomobile]]) no-repeat 0 0;
+      background-size: 100% auto;
+      display: [[logomobiledisplay]];
+      float: left;
+      height: [[logomobileheight]];
+      margin: 0;
+      padding: 0;
+      width: [[logomobilewidth]];    
+  }
+}
